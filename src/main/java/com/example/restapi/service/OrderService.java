@@ -24,6 +24,9 @@ public class OrderService {
         return Optional.of(orderRepository.findById(id)).orElse(null);
     }
 
+    public Order addOrder(Order order) {
+        return orderRepository.save(order);
+    }
 
     public Order save(Order object) {
         return orderRepository.save(object);
@@ -33,9 +36,9 @@ public class OrderService {
     public String deleteOrder(Long id) {
         try {
             orderRepository.deleteById(id);
-            return String.format("Order with id %d is successfully deleted", id);
+            return String.format("Order is successfully deleted");
         } catch (Exception e) {
-            return String.format("ORder with id %d is not found", id);
+            return String.format("Order is not found");
         }
 
     }
@@ -45,7 +48,7 @@ public class OrderService {
     }
 
 
-    public Order update(Order object) {
+    public Order update(Long id, Order object) {
         Optional<Order> order = getById(object.getId());
         if(order.isPresent()){
             Order a = order.get();

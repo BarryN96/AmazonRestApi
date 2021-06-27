@@ -21,8 +21,13 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
 
-
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
+    }
 
     private Optional<Product> getById(Long id) {
         return Optional.of(productRepository.findById(id)).orElse(null);
@@ -34,7 +39,7 @@ public class ProductService {
     }
 
 
-    public String deleteOrder(Long id) {
+    public String deleteProdcut(Long id) {
         try {
             productRepository.deleteById(id);
             return String.format("Product is successfully deleted");
@@ -45,7 +50,7 @@ public class ProductService {
     }
 
 
-    public Product update(Product object) {
+    public Product update(Long id, Product object) {
         Optional<Product> product = getById(object.getId());
         if(product.isPresent()){
             Product a = product.get();
