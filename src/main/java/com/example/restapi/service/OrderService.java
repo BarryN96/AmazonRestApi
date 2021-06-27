@@ -2,11 +2,13 @@ package com.example.restapi.service;
 
 import com.example.restapi.entity.Customer;
 import com.example.restapi.entity.Order;
+import com.example.restapi.entity.OrderPosition;
 import com.example.restapi.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,7 +20,9 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     public List<Order> getOrders() {
-        return orderRepository.findAll();
+        List<Order> orders = new ArrayList<>();
+        orderRepository.findAll().forEach(orders::add);
+        return orders;
     }
 
     public Order getById(Long id) {

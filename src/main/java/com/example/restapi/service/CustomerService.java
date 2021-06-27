@@ -17,7 +17,9 @@ public class CustomerService {
 
     // Wiedergibt alle Zeilen der tabelle und füllt die List mit objekten
     public List<Customer> getAllCustomer() {
-        return customerRepository.findAll();
+        List<Customer> customers = new ArrayList<>();
+        customerRepository.findAll().forEach(customers::add);
+        return customers;
     }
 
     // Gibt Customer von der gegebenene id zurück

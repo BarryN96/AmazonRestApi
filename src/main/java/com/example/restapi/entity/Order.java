@@ -17,7 +17,6 @@ public class Order {
     private Date orderDate;
 
     @OneToMany(targetEntity = OrderPosition.class , cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private List<OrderPosition> orderPositions = new ArrayList<>();
 
     public Order(Date orderDate) {
@@ -25,6 +24,20 @@ public class Order {
     }
 
     public Order() {
+
+    }
+
+    public List<OrderPosition> getOrderPositions() {
+        return orderPositions;
+    }
+
+    public void setOrderPositions(List<OrderPosition> orderPositions) {
+        this.orderPositions = orderPositions;
+    }
+
+    public void setOrderPosition(OrderPosition orderPosition) {
+
+       this.orderPositions.add(orderPosition);
 
     }
 

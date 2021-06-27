@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class OrderPosition {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "orderPosition_id")
     private Long id;
 
@@ -23,6 +23,7 @@ public class OrderPosition {
     public OrderPosition() {
 
     }
+
 
     public Long getId() {
         return id;

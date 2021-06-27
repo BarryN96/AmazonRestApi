@@ -10,14 +10,15 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
     private Long id;
     private int price;
     private String title;
 
+
     @OneToMany(targetEntity = OrderPosition.class , cascade = CascadeType.ALL)
-   // @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private List<OrderPosition> orderPositions = new ArrayList<>();
 
     public int getPrice() {
@@ -36,7 +37,7 @@ public class Product {
         this.title = buyingPrice;
     }
 
-/*
+
     public List<OrderPosition> getOrderPositions() {
         return orderPositions;
     }
@@ -45,7 +46,15 @@ public class Product {
         this.orderPositions = orderPositions;
     }
 
- */
+
+    public void setOrderPosition(OrderPosition orderPosition) {
+
+        this.orderPositions.add(orderPosition);
+
+    }
+
+
+
 
     public void setOrder(OrderPosition order) {this.orderPositions.add(order);}
 

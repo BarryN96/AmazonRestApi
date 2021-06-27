@@ -1,16 +1,13 @@
 package com.example.restapi.controller;
 
-import com.example.restapi.entity.Customer;
-import com.example.restapi.entity.Order;
+
 import com.example.restapi.entity.OrderPosition;
 import com.example.restapi.service.OrderPositionService;
-import com.example.restapi.service.OrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/orderposition")

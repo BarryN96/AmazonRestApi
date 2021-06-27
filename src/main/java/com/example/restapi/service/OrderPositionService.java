@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,7 +21,12 @@ public class OrderPositionService {
     private OrderPositionRepository orderPositionRepository;
 
     public List<OrderPosition> getOrderpositions() {
-        return orderPositionRepository.findAll();
+
+
+            List<OrderPosition> orderPositions = new ArrayList<>();
+            orderPositionRepository.findAll().forEach(orderPositions::add);
+            return orderPositions;
+
     }
 
     public OrderPosition getOrderPosition(Long id) {

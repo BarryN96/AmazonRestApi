@@ -16,17 +16,31 @@ public class Customer {
     private String name;
 
 
-    @OneToMany(targetEntity = OrderPosition.class , cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Order.class , cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private List<Order> orders = new ArrayList<>();
+
 
     public Customer(String name) {
         this.name = name;
     }
 
 
-
     public Customer() {
+
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setOrder(Order order) {
+
+        this.orders.add(order);
 
     }
 

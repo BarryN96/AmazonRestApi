@@ -1,6 +1,7 @@
 package com.example.restapi.service;
 
 
+import com.example.restapi.entity.OrderPosition;
 import com.example.restapi.entity.Product;
 import com.example.restapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ public class ProductService {
 
     public List<Product> getProducts() {
 
-        return productRepository.findAll();
+        List<Product> products = new ArrayList<>();
+        productRepository.findAll().forEach(products::add);
+        return products;
     }
 
     public Product getProductById(Long id) {
