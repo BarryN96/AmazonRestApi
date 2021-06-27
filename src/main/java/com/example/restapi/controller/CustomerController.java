@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping(path = "api/v1/customer")
 public class CustomerController {
 
     private CustomerRepository customerRepository;
