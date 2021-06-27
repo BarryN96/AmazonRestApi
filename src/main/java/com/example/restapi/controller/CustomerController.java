@@ -1,11 +1,10 @@
 package com.example.restapi.controller;
 
-
-import com.example.restapi.repository.CustomerRepository;
 import com.example.restapi.entity.Customer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.restapi.entity.Product;
+import com.example.restapi.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,16 +13,32 @@ import java.util.List;
 @RequestMapping(path = "api/v1/customer")
 public class CustomerController {
 
-    private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerService customerService;
 
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    @GetMapping("/customers")
+    public List<Customer> findAll() {return customerService.getAllCustomer();}
+
+    @GetMapping("/customer/{id}")
+    public Customer getCustomerById(@PathVariable Long id) { return customerService.getCustomer(id);}
+
+    @PostMapping("/customer")
+    public Customer addCustomer(@RequestBody Customer customer) { return customerService.addCustomer(customer);}
+
+    @PutMapping("/customer/{id}")
+    public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+        return customerService.updateCustomer(id, customer);
     }
 
-    @GetMapping("")
-    public List<Customer> index() {
-
-        return customerRepository.findAll();
-
+    @PatchMapping("/customer/{id}")
+    public Customer patchClient(@PathVariable Long id, @RequestBody Customer customer) {
+        return customerService.updateCustomer(id, customer);
     }
+
+
+    @DeleteMapping("customer/deleteCustomer/{id}")
+    public void deleteCustomer(@PathVariable("id") Customer customer) {
+        customerService.deleteCustomer(customer.getId());
+    }
+
 }
