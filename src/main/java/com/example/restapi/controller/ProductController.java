@@ -1,14 +1,12 @@
 package com.example.restapi.controller;
 
 
-import com.example.restapi.entity.Order;
 import com.example.restapi.entity.Product;
 import com.example.restapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/product")
@@ -44,7 +42,7 @@ public class ProductController {
 
     @DeleteMapping("product/deleteProduct/{id}")
     public void deleteProduct(@PathVariable("id") Product product) {
-        productService.deleteProdcut(product.getId());
+        productService.deleteProduct(product.getId());
     }
 
 

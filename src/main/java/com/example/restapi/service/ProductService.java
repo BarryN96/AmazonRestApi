@@ -39,7 +39,7 @@ public class ProductService {
     }
 
 
-    public String deleteProdcut(Long id) {
+    public String deleteProduct(Long id) {
         try {
             productRepository.deleteById(id);
             return String.format("Product is successfully deleted");
