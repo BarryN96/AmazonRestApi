@@ -1,24 +1,24 @@
 package com.example.restapi.entity;
 
 
+
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Product")
-@Table(name = "product")
+@Entity
+
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int price;
     private String title;
 
 
-    @OneToMany(targetEntity = OrderPosition.class , cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    @OneToMany(targetEntity=OrderPosition.class, mappedBy="product",cascade = CascadeType.ALL)
     private List<OrderPosition> orderPositions = new ArrayList<>();
 
     public int getPrice() {
@@ -38,25 +38,25 @@ public class Product {
     }
 
 
-    public List<OrderPosition> getOrderPositions() {
-        return orderPositions;
-    }
-
-    public void setOrderPositions(List<OrderPosition> orderPositions) {
-        this.orderPositions = orderPositions;
-    }
-
-
-    public void setOrderPosition(OrderPosition orderPosition) {
-
-        this.orderPositions.add(orderPosition);
-
-    }
-
-
+//    public List<OrderPosition> getOrderPositions() {
+//        return orderPositions;
+//    }
+//
+//    public void setOrderPositions(List<OrderPosition> orderPositions) {
+//        this.orderPositions = orderPositions;
+//    }
+//
+//
+//    public void setOrderPosition(OrderPosition orderPosition) {
+//
+//        this.orderPositions.add(orderPosition);
+//
+//    }
 
 
-    public void setOrder(OrderPosition order) {this.orderPositions.add(order);}
+
+
+//    public void setOrder(OrderPosition order) {this.orderPositions.add(order);}
 
     public Product(){}
 

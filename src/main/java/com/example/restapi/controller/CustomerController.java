@@ -10,7 +10,6 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(path = "api/v1/customer")
 public class CustomerController {
 
     @Autowired

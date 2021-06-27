@@ -1,19 +1,23 @@
 package com.example.restapi.entity;
 
+
+
 import javax.persistence.*;
 
-@Entity(name = "OrderPostion")
-@Table(name = "orderPosition")
+@Entity
 public class OrderPosition {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "orderPosition_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private  int quantity;
 
     private int buyingPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "product_fk", referencedColumnName = "id")
+    Product product;
 
     public OrderPosition(int quantity, int buyingPrice) {
         this.quantity = quantity;
