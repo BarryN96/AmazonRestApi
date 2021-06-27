@@ -1,5 +1,6 @@
 package com.example.restapi.service;
 
+import com.example.restapi.entity.Customer;
 import com.example.restapi.entity.Order;
 import com.example.restapi.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Optional<Order> getById(Long id) {
-        return Optional.of(orderRepository.findById(id)).orElse(null);
+    public Order getById(Long id) {
+        return orderRepository.findById(id).orElse(null);
     }
 
     public Order addOrder(Order order) {
@@ -47,17 +48,14 @@ public class OrderService {
         return orderRepository.findAll().stream().filter(x -> x.getOrderDate().compareTo(date) == 0).collect(Collectors.toList());
     }
 
-
-    public Order update(Long id, Order object) {
-        Optional<Order> order = getById(object.getId());
-        if(order.isPresent()){
-            Order a = order.get();
-            a.setOrderDate(object.getOrderDate());
-
-            return save(a);
+    // Order updaten
+    public Order updateOrder(Long id, Order OrderInfo) {
+        Order order = orderRepository.findById(id).orElse(null);
+        if(order != null) {
+            order.setOrderDate(OrderInfo.getOrderDate());
+            orderRepository.save(order);
         }
-
-        return null;
+        return order;
     }
 
 

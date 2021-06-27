@@ -17,7 +17,7 @@ public class Product {
     private String title;
 
     @OneToMany(targetEntity = OrderPosition.class , cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+   // @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private List<OrderPosition> orderPositions = new ArrayList<>();
 
     public int getPrice() {
@@ -36,7 +36,7 @@ public class Product {
         this.title = buyingPrice;
     }
 
-
+/*
     public List<OrderPosition> getOrderPositions() {
         return orderPositions;
     }
@@ -44,6 +44,8 @@ public class Product {
     public void setOrderPositions(List<OrderPosition> orderPositions) {
         this.orderPositions = orderPositions;
     }
+
+ */
 
     public void setOrder(OrderPosition order) {this.orderPositions.add(order);}
 

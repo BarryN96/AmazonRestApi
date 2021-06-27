@@ -1,6 +1,8 @@
 package com.example.restapi.controller;
 
+import com.example.restapi.entity.Customer;
 import com.example.restapi.entity.Order;
+import com.example.restapi.repository.OrderRepository;
 import com.example.restapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +29,11 @@ public class OrderController {
     }
 
     @GetMapping("orders/order/{id}")
-    public Optional<Order> getOrderById(@PathVariable long id) {
-        return orderService.getById(id);
-    }
+    public Order getOrderById(@PathVariable Long id) { return orderService.getById(id);}
 
     @PutMapping("/order{id}")
-    public Order updateClient(@PathVariable Long id, @RequestBody Order orderDetails) {
-        return orderService.update(id, orderDetails);
+    public Order updateOrder(@PathVariable Long id, @RequestBody Order orderDetails) {
+        return orderService.updateOrder(id, orderDetails);
     }
 
     @GetMapping("orders/{date}")
@@ -44,12 +44,12 @@ public class OrderController {
 
     @PostMapping("orders/addOrders")
     public Order addOrder(@RequestBody Order order) {
-        return orderService.save(order);
+        return orderService.addOrder(order);
     }
 
     @PatchMapping("/order/{id}")
-    public Order patchClient(@PathVariable Long id, @RequestBody Order order) {
-        return orderService.update(id, order);
+    public Order patchOrder(@PathVariable Long id, @RequestBody Order order) {
+        return orderService.updateOrder(id, order);
     }
 
     @DeleteMapping("orders/deleteOrder/{id}")
